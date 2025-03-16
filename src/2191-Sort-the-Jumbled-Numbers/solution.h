@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <vector>
 
-#include "icecream.hpp"
-
 class Solution {
   public:
     std::vector<int> sortJumbled(std::vector<int>& mapping,
@@ -13,11 +11,9 @@ class Solution {
             auto ans = 0;
             auto mult = 1;
             while (num != 0) {
-                IC(num % 10, mapping[num % 10]);
                 ans += mult * mapping[num % 10];
                 mult *= 10;
                 num /= 10;
-                IC(ans, mult, num);
             }
             return ans;
         };
