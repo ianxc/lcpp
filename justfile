@@ -1,13 +1,21 @@
 #!/usr/bin/env just --justfile
 
+default:
+    @just build
+    @just test a
+
 # Build the project
 build *args:
     @mkdir -p build
     @cmake -B build -S .
     @cmake --build build {{args}}
 
+alias b := build
+
 build-inc *args:
     @cmake --build build {{args}}
+
+alias i := build-inc
 
 clean:
     @cmake --build build -t clean
@@ -17,7 +25,7 @@ clean-all:
 
 # Run a specific executable with fzf selector if no target is provided
 run target="__def__" *args:
-    #!/usr/bin/env zsh
+    #!/usr/bin/env bash
     if [ "{{target}}" = "__def__" ]; then
         TARGET=$(ls -1 build/bin | fzf --height 40% --reverse --prompt="Select run target: ")
         if [ -n "$TARGET" ]; then

@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    ".cache/": true,
+    "Testing/": true,
+    "vcpkg_installed": true
+  }
+}
