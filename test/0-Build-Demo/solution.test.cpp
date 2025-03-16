@@ -1,4 +1,5 @@
 #include "../../src/0-Build-Demo/solution.h"
+
 #include "gtest/gtest.h"
 
 TEST(Suite1, add_double_2nd) {
