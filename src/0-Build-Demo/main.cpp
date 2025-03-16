@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 
+#include "icecream.hpp"
 #include "solution.h"
 
 int main() {
@@ -12,5 +13,6 @@ int main() {
   m[2] = 3;
   m[3] = 10;
   std::cout << "m.size() = " << m.size() << '\n';
+  IC(m);
   return 0;
 }

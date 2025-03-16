@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.15...3.31)
+set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "cmake-toolchain-v1")
+
 project(lcpp VERSION 0.1
   DESCRIPTION "Leetcode solutions"
-  LANGUAGES CXX)
+  LANGUAGES CXX
+)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -12,14 +15,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 include(CTest)
 
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG v1.16.0
-)
-FetchContent_MakeAvailable(googletest)
+find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
+find_path(ICECREAM_CPP_INCLUDE_DIRS "icecream.hpp")
 
 function(add_leetcode_problem P_ID)
   # add src target as library
@@ -32,6 +30,9 @@ function(add_leetcode_problem P_ID)
   target_include_directories(${P_LIB} PUBLIC
     ${P_SRC_DIR}
   )
+  target_include_directories(${P_LIB} PRIVATE
+    ${ICECREAM_CPP_INCLUDE_DIRS}
+  )
 
   # add test target
   set(P_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test/${P_ID}")
@@ -43,7 +44,10 @@ function(add_leetcode_problem P_ID)
     )
     target_link_libraries(${P_TEST_NAME} PRIVATE
       ${P_LIB}
-      GTest::gtest GTest::gtest_main
+      GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main
+    )
+    target_include_directories(${P_TEST_NAME} PRIVATE
+      ${ICECREAM_CPP_INCLUDE_DIRS}
     )
 
     gtest_discover_tests(${P_TEST_NAME}
@@ -60,6 +64,9 @@ function(add_leetcode_problem P_ID)
     )
     target_link_libraries(${P_ID}_run PRIVATE
       ${P_LIB}
+    )
+    target_include_directories(${P_ID}_run PRIVATE
+      ${ICECREAM_CPP_INCLUDE_DIRS}
     )
   endif()
 endfunction()
