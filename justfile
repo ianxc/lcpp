@@ -2,7 +2,18 @@
 
 # Build the project
 build *args:
+    @mkdir -p build
+    @cmake -B build -S .
     @cmake --build build {{args}}
+
+build-inc *args:
+    @cmake --build build {{args}}
+
+clean:
+    @cmake --build build -t clean
+
+clean-all:
+    rm -r build
 
 # Run a specific executable with fzf selector if no target is provided
 run target="__def__" *args:
@@ -53,6 +64,8 @@ test target="__def__" *args:
             ctest --test-dir build -R "$TARGET" -V
         fi
         rm -f /tmp/test_selection
+    elif [ "{{target}}" = "a" ]; then
+        ctest --test-dir build "{{args}}" -V
     else
         ctest --test-dir build -R {{target}} "{{args}}" -V
     fi
