@@ -1,5 +1,7 @@
 #!/usr/bin/env just --justfile
 
+set positional-arguments
+
 default:
     @just build-inc
     @just test a
@@ -26,22 +28,13 @@ clean:
 clean-all:
     rm -r build
 
-set positional-arguments
-
-add +args:
+add p_num p_name:
     #!/usr/bin/env bash
-
     set -e # exit on error
     set -C # noclobber
 
-    if [ $# -lt 2 ]; then
-        echo "Usage: $0 <problem-number> <problem-name>"
-        echo "Example: $0 100 'Same Tree'"
-        exit 1
-    fi
-
-    P_NUM=$1
-    P_NAME=$2
+    P_NUM="{{p_num}}"
+    P_NAME="{{p_name}}"
 
     if [[ "${P_NAME: -1}" == "/" ]]; then
         echo "<problem-name> should not end with /"
@@ -60,9 +53,8 @@ add +args:
     T_SRC_DIR="src/0-Template"
     T_TEST_DIR="test/0-Template"
 
-    cp -a "${T_SRC_DIR}"/ "${P_SRC_DIR}"
-    cp -a "${T_TEST_DIR}"/ "${P_TEST_DIR}"
-
+    cp -an "${T_SRC_DIR}"/ "${P_SRC_DIR}"
+    cp -an "${T_TEST_DIR}"/ "${P_TEST_DIR}"
 
 # Run a specific executable with fzf selector if no target is provided
 run target="__def__" *args:
