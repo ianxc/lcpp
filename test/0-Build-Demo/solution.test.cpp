@@ -1,4 +1,4 @@
-#include "../../src/0-Build-Demo/solution.h"
+#include "solution.h"
 
 #include "gtest/gtest.h"
 #include "icecream.hpp"
