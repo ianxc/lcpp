@@ -1,10 +1,14 @@
 #!/usr/bin/env just --justfile
 
+# Build the project
+build *args:
+    @cmake --build build {{args}}
+
 # Run a specific executable with fzf selector if no target is provided
-run target="__default__" *args:
+run target="__def__" *args:
     #!/usr/bin/env zsh
-    if [ "{{target}}" = "__default__" ]; then
-        TARGET=$(ls -1 build/bin | fzf --height 40% --reverse --prompt="Select executable: ")
+    if [ "{{target}}" = "__def__" ]; then
+        TARGET=$(ls -1 build/bin | fzf --height 40% --reverse --prompt="Select run target: ")
         if [ -n "$TARGET" ]; then
             build/bin/$TARGET {{args}}
         fi
@@ -13,9 +17,9 @@ run target="__default__" *args:
     fi
 
 # Run a specific test with fzf selector if no target is provided
-test *args:
+test target="__def__" *args:
     #!/usr/bin/env bash
-    if [ -z "{{args}}" ]; then
+    if [ "{{target}}" = "__def__" ]; then
         # Get all test names
         TEST_LIST=$(ctest --test-dir build -N | grep "Test #" | sed 's/.*: //')
 
@@ -50,13 +54,9 @@ test *args:
         fi
         rm -f /tmp/test_selection
     else
-        ctest --test-dir build -R "{{args}}" -V
+        ctest --test-dir build -R {{target}} "{{args}}" -V
     fi
 
 # List available tests
 tests:
     @ctest --test-dir build -N | grep "Test #" | sed 's/.*: //'
-
-# Build the project
-build:
-    @cmake --build build
