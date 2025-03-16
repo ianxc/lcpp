@@ -1,13 +1,12 @@
 #!/usr/bin/env just --justfile
 
 default:
-    @just build
+    @just build-inc
     @just test a
 
 # Build the project
 build *args:
-    @mkdir -p build
-    @cmake -B build -S .
+    @just conf
     @cmake --build build {{args}}
 
 alias b := build
@@ -16,6 +15,10 @@ build-inc *args:
     @cmake --build build {{args}}
 
 alias i := build-inc
+
+conf:
+  @mkdir -p build
+  @cmake -B build -S .
 
 clean:
     @cmake --build build -t clean
@@ -78,6 +81,7 @@ test target="__def__" *args:
         ctest --test-dir build -R {{target}} "{{args}}" -V
     fi
 
-# List available tests
-tests:
+alias t := test
+
+list-tests:
     @ctest --test-dir build -N | grep "Test #" | sed 's/.*: //'
