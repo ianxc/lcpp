@@ -71,6 +71,7 @@ run target="__def__" *args:
 # Run a specific test with fzf selector if no target is provided
 test target="__def__" *args:
     #!/usr/bin/env bash
+    DEFAULT_FLAGS="--output-on-failure"
     if [ "{{target}}" = "__def__" ]; then
         # Get all test names
         TEST_LIST=$(ctest --test-dir build -N | grep "Test #" | sed 's/.*: //')
@@ -102,13 +103,13 @@ test target="__def__" *args:
         TARGET=$(cat /tmp/test_selection)
         if [ -n "$TARGET" ]; then
             echo "Running tests matching pattern: $TARGET"
-            ctest --test-dir build -R "$TARGET" -V
+            ctest --test-dir build -R "$TARGET" "$DEFAULT_FLAGS"
         fi
         rm -f /tmp/test_selection
     elif [ "{{target}}" = "." ]; then
-        ctest --test-dir build "{{args}}" -V
+        ctest --test-dir build "{{args}}" "$DEFAULT_FLAGS"
     else
-        ctest --test-dir build -R {{target}} "{{args}}" -V
+        ctest --test-dir build -R {{target}} "{{args}}" "$DEFAULT_FLAGS"
     fi
 
 alias t := test
