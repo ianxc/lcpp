@@ -10,7 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-enable_testing()
+include(CTest)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -18,12 +18,7 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG v1.16.0
 )
-FetchContent_Declare(
-  icecream-cpp
-  GIT_REPOSITORY https://github.com/renatoGarcia/icecream-cpp
-  GIT_TAG v1.0.0
-)
-FetchContent_MakeAvailable(googletest icecream-cpp)
+FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
 
 function(add_leetcode_problem P_ID)
