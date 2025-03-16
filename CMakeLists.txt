@@ -4,8 +4,7 @@ project(lcpp VERSION 0.1
   LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS)
-
+set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -54,7 +53,7 @@ function(add_leetcode_problem P_ID)
 
     gtest_discover_tests(${P_TEST_NAME}
       PROPERTIES LABELS "${P_ID}"
-      TEST_PREFIX "${P_ID}_"
+      TEST_PREFIX "${P_ID}."
       DISCOVERY_TIMEOUT 10
     )
   endif()
