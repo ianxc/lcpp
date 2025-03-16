@@ -2,8 +2,19 @@
 
 #include <gtest/gtest.h>
 
-TEST(test_suite_name, test_name) {
-  Solution s;
+#include <icecream.hpp>
+#include <vector>
 
-  EXPECT_EQ(s.find_solution(12), 34);
+TEST(TwoSum, Test1) {
+  Solution s;
+  auto v = std::vector{1, 2, 3};
+  EXPECT_EQ(s.two_sum(v, 4), std::pair(0, 2));
+}
+
+TEST(TwoSum, Test2) {
+  Solution2 s;
+  auto v = std::vector{1, 2, 3};
+  auto exp = std::vector{0, 2};
+  auto res = s.twoSum(v, 4);
+  EXPECT_EQ(res, exp);
 }

@@ -24,7 +24,7 @@ function(set_warnings TARGET)
   if(MSVC)
     target_compile_options(${TARGET} PRIVATE /W4 /WX)
   else()
-    target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic -Wconversion)
+    target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
   endif()
 endfunction()
 

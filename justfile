@@ -105,13 +105,18 @@ test target="__def__" *args:
             ctest --test-dir build -R "$TARGET" -V
         fi
         rm -f /tmp/test_selection
-    elif [ "{{target}}" = "a" ]; then
+    elif [ "{{target}}" = "." ]; then
         ctest --test-dir build "{{args}}" -V
     else
         ctest --test-dir build -R {{target}} "{{args}}" -V
     fi
 
 alias t := test
+
+test-all:
+    @just test .
+
+alias tt := test-all
 
 list-tests:
     @ctest --test-dir build -N | grep "Test #" | sed 's/.*: //'
