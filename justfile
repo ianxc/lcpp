@@ -47,8 +47,8 @@ add p_num p_name:
     P_SRC_DIR="src/${P_ID}"
     P_TEST_DIR="test/${P_ID}"
 
-    mkdir -p P_SRC_DIR
-    mkdir -p P_TEST_DIR
+    mkdir -p "${P_SRC_DIR}"
+    mkdir -p "${P_TEST_DIR}"
 
     T_SRC_DIR="src/0-Template"
     T_TEST_DIR="test/0-Template"
