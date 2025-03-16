@@ -12,6 +12,8 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: RelWithDebInfo
+  CC: gcc
+  CXX: g++
   VCPKG_DISABLE_METRICS: true
 
 jobs:
