@@ -18,7 +18,7 @@ include(CTest)
 
 find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
-find_path(ICECREAM_CPP_INCLUDE_DIRS "icecream.hpp")
+find_path(ICECREAM_CPP_INCLUDE_DIRS <icecream.hpp>)
 
 function(set_warnings TARGET)
   if(MSVC)

@@ -1,7 +1,7 @@
+#include <icecream.hpp>
 #include <iostream>
 #include <unordered_map>
 
-#include "icecream.hpp"
 #include "solution.h"
 
 int main() {

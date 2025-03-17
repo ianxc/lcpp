@@ -1,7 +1,8 @@
 #include "solution.h"
 
-#include "gtest/gtest.h"
-#include "icecream.hpp"
+#include <gtest/gtest.h>
+
+#include <icecream.hpp>
 
 TEST(Suite1, add_double_2nd) {
     IC();
