@@ -23,7 +23,7 @@ class Solution {
 class Solution2 {
   public:
     std::vector<int> twoSum(std::vector<int>& nums, int target) {
-        std::unordered_map<int, int> comps{};
+        std::unordered_map<int, int> comps;
         int n = nums.size();
         for (auto i = 0; i < n; i++) {
             auto it = comps.find(target - nums[i]);
