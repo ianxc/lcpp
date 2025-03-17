@@ -69,6 +69,7 @@ run target="__def__" *args:
 test target="__def__" *args:
     #!/usr/bin/env bash
     DEFAULT_FLAGS="--output-on-failure"
+    # DEFAULT_FLAGS="-V"
     if [ "{{target}}" = "__def__" ]; then
         # Get all test names
         TEST_LIST=$(ctest --test-dir build -N | grep "Test #" | sed 's/.*: //')

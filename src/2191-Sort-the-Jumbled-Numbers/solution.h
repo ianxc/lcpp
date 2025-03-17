@@ -18,7 +18,8 @@ class Solution {
             return ans;
         };
 
-        auto res = std::vector(nums);
+        // copy nums to a new vector
+        auto res{nums};
         std::sort(res.begin(), res.end(), [&transform](int a, int b) -> int {
             return transform(a) < transform(b);
         });
