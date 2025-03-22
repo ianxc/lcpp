@@ -83,13 +83,13 @@ test target="__def__" *args:
             # Full test names
             echo "$TEST_LIST"
 
-            # Generate all possible prefixes for grouping (up to 10 levels deep)
+            # Generate all possible prefixes for grouping (up to 5 levels deep)
             echo "$TEST_LIST" | while read -r line; do
                 # Start with the full line
                 current="$line"
 
                 # Generate all possible prefixes by removing parts from the end
-                for ((i=1; i<=10; i++)); do
+                for ((i=1; i<=5; i++)); do
                     # If we've already reduced to the first segment, stop
                     if [[ ! "$current" == *.* ]]; then
                         break
@@ -100,7 +100,9 @@ test target="__def__" *args:
                     echo "$current"
                 done
             done
-        } | sort --numeric-sort | fzf --reverse --height 40% --no-sort --prompt="Select test pattern: " > /tmp/test_selection
+        } \
+        | sort -V -u \
+        | fzf --reverse --height 40% --no-sort --prompt="Select test pattern: " > /tmp/test_selection
 
         TARGET=$(cat /tmp/test_selection)
         if [ -n "$TARGET" ]; then
