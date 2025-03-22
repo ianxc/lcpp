@@ -14,5 +14,3 @@ TEST(Solution, test_name) {
 
     EXPECT_FALSE(s.validWordAbbreviation("substitution", "s55n"));
 }
-
-TEST(Solution, to_fix) { Solution s; }
