@@ -37,6 +37,8 @@ class Solution {
             j++;
         }
         IC(i, word[i], j, abbr[j], curr_num);
+        // don't forget substitution numbers at the ends! we
+        // need to advance the word by this number of chars.
         i += curr_num;
         return i == wn && j == an;
     }
