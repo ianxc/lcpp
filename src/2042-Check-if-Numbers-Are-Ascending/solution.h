@@ -40,6 +40,7 @@ class Solution {
             i++;
         };
 
-        return true;
+        // need this when the last token is anumber
+        return !curr_is_digit || last_num < curr_num;
     }
 };
