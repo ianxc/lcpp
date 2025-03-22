@@ -20,9 +20,6 @@ class Solution {
             }
 
             // at this point, j should be pointing at the start of a letter run.
-            if (curr_num != 0) {
-                IC(i, word[i], j, abbr[j], curr_num, 'x');
-            }
             i += curr_num;
             curr_num = 0;
             if (i >= wn) {
