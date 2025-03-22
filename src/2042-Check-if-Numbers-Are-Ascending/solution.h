@@ -7,7 +7,7 @@
 class Solution {
   public:
     bool areNumbersAscending(std::string s) {
-        IC(s);
+        IC_CONFIG.output(std::cout);
 
         int length = s.size();
         auto last_num = -1, curr_num = 0, i = 0;
@@ -15,7 +15,9 @@ class Solution {
         while (i < length) {
             IC(i, s[i]);
             if (s[i] == ' ') {
-                IC(i, s[i], curr_num, last_num, curr_is_digit, "a");
+                IC_CONFIG_SCOPE();
+                IC_CONFIG.prefix("got_space");
+                IC(i, s[i], curr_num, last_num, curr_is_digit);
                 // reset everything
                 if (curr_is_digit) {
                     if (last_num >= curr_num) return false;
@@ -29,7 +31,9 @@ class Solution {
             }
             IC(i, s[i], curr_is_digit);
             if (!curr_is_digit && std::isdigit(s[i])) {
-                IC(i, s[i], "d");
+                IC_CONFIG_SCOPE();
+                IC_CONFIG.prefix("set_is_digit");
+                IC(i, s[i]);
                 curr_is_digit = true;
             }
 
