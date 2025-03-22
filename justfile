@@ -4,7 +4,7 @@ set positional-arguments
 
 default:
     @just build-inc
-    @just test a
+    @just test-all
 
 # Build the project
 build *args:
@@ -100,7 +100,7 @@ test target="__def__" *args:
                     echo "$current"
                 done
             done
-        } | sort | uniq | fzf --height 40% --reverse --prompt="Select test pattern: " > /tmp/test_selection
+        } | sort --numeric-sort | fzf --reverse --height 40% --no-sort --prompt="Select test pattern: " > /tmp/test_selection
 
         TARGET=$(cat /tmp/test_selection)
         if [ -n "$TARGET" ]; then
