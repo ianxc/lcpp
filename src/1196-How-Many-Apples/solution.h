@@ -8,7 +8,7 @@
 class Solution {
   public:
     int maxNumberOfApples(std::vector<int>& weight) {
-        std::sort(weight.begin(), weight.end());
+        std::ranges::sort(weight);
         const auto n = static_cast<int>(weight.size());
         auto sum = 0;
         for (auto i = 0; i < n; i++) {
