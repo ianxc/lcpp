@@ -11,9 +11,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_COLOR_DIAGNOSTICS ON)
 
-# should expose this to the user but keep this now for convenience
-set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=mold")
-set(CMAKE_SHARED_LINKER_FLAGS "-fuse-ld=mold")
+if(UNIX AND NOT APPLE)
+  # should expose this to the user but keep this now for convenience
+  set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=mold")
+  set(CMAKE_SHARED_LINKER_FLAGS "-fuse-ld=mold")
+endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
