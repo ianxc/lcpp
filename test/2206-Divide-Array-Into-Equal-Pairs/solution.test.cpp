@@ -21,7 +21,7 @@ scenario t5{{1, 2, 5, 6, 3, 4}, false};
 TEST(Solution, all) {
     Solution s;
 
-    for (auto sc : {&t1, &t2, &t3, &t4, &t5}) {
+    for (auto* sc : {&t1, &t2, &t3, &t4, &t5}) {
         EXPECT_EQ(s.divideArray(sc->input), sc->expected);
     }
 }
@@ -29,7 +29,7 @@ TEST(Solution, all) {
 TEST(WrongXorSolution, all) {
     WrongXorSolution s;
 
-    for (auto sc : {&t1, &t2, &t4, &t5}) {
+    for (auto* sc : {&t1, &t2, &t4, &t5}) {
         EXPECT_EQ(s.divideArray(sc->input), sc->expected);
     }
 

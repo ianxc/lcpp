@@ -42,7 +42,9 @@ class HeapSolution {
         int sum = 0;
         for (auto i = 0; i < n; i++) {
             sum += weight.front();
-            if (sum > LIMIT) return i;
+            if (sum > LIMIT) {
+                return i;
+            }
             std::pop_heap(weight.begin(), weight.end(), cmp);
             weight.pop_back();
         }

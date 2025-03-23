@@ -20,7 +20,9 @@ class Solution {
                 IC(i, s[i], curr_num, last_num, curr_is_digit);
                 // reset everything
                 if (curr_is_digit) {
-                    if (last_num >= curr_num) return false;
+                    if (last_num >= curr_num) {
+                        return false;
+                    }
                     last_num = curr_num;
                     curr_num = 0;
                     curr_is_digit = false;
@@ -30,7 +32,7 @@ class Solution {
                 continue;
             }
             IC(i, s[i], curr_is_digit);
-            if (!curr_is_digit && std::isdigit(s[i])) {
+            if (!curr_is_digit && (std::isdigit(s[i]) != 0)) {
                 IC_CONFIG_SCOPE();
                 IC_CONFIG.prefix("set_is_digit");
                 IC(i, s[i]);

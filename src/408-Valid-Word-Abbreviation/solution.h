@@ -10,10 +10,12 @@ class Solution {
         int i = 0, j = 0, wn = word.size(), an = abbr.size();
         int curr_num = 0;
         while (i < wn && j < an) {
-            if (std::isdigit(abbr[j])) {
+            if (std::isdigit(abbr[j]) != 0) {
                 auto digit = abbr[j] - '0';
                 // reject leading zeros
-                if (digit == 0 && curr_num == 0) return false;
+                if (digit == 0 && curr_num == 0) {
+                    return false;
+                }
                 curr_num = curr_num * 10 + (abbr[j] - '0');
                 j++;
                 continue;
