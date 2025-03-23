@@ -76,7 +76,7 @@ test target="__def__" *args:
     # DEFAULT_FLAGS="-V"
     if [ "{{target}}" = "__def__" ]; then
         # Get all test names
-        TEST_LIST=$(ctest --test-dir build -N | grep "Test #" | sed 's/.*: //')
+        TEST_LIST=$(ctest --test-dir build -N | grep -E "Test +#" | sed 's/.*: //')
 
         # Generate test options including all possible test group patterns
         {
