@@ -54,12 +54,13 @@ Set 2 => 0 for left/top edges.
 
 */
 
-struct first_has_zero {
-    bool row;
-    bool col;
-};
-
 class InPlaceSolution {
+  private:
+    struct first_has_zero {
+        bool row;
+        bool col;
+    };
+
   public:
     void setZeroes(std::vector<std::vector<int>>& matrix) {
         first_has_zero fhz{false, false};
