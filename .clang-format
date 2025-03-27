@@ -2,4 +2,4 @@ BasedOnStyle: Google
 AccessModifierOffset: -2
 IndentWidth: 4
 ObjCBlockIndentWidth: 4
-SeparateDefinitionBlocks : Always
+SeparateDefinitionBlocks: Always
