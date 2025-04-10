@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 
+namespace p1196 {
+
 class Solution {
   public:
     int maxNumberOfApples(std::vector<int>& weight) {
@@ -51,3 +53,5 @@ class HeapSolution {
         return n;
     }
 };
+
+}  // namespace p1196

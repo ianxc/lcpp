@@ -4,6 +4,8 @@
 
 #include "solution.h"
 
+using namespace p0_build_demo;
+
 int main() {
     std::cout << "Hello, world!\n";
     std::cout << "4 # 5 = " << add_double_2nd(4, 5) << '\n';

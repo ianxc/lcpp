@@ -4,6 +4,8 @@
 
 #include <icecream.hpp>
 
+using namespace p0_build_demo;
+
 TEST(Suite1, add_double_2nd) {
     IC();
     IC(add_double_2nd(2, 3));

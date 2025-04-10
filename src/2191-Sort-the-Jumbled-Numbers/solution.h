@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <vector>
 
+namespace p2191 {
+
 class Solution {
   public:
     std::vector<int> sortJumbled(std::vector<int>& mapping,
@@ -26,3 +28,5 @@ class Solution {
         return res;
     }
 };
+
+}  // namespace p2191

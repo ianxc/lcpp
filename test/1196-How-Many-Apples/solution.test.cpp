@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace p1196;
+
 TEST(Solution1, basic) {
     Solution s;
 

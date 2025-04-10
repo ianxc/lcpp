@@ -1,5 +1,7 @@
 #pragma once
 
+namespace p0_template {
+
 class Solution {
   public:
     int find_solution(int x) {
@@ -7,3 +9,5 @@ class Solution {
         return y - 2;
     }
 };
+
+}  // namespace p0_template

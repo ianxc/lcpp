@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace p2191;
+
 TEST(test_suite_name, test_name) {
     Solution s;
     auto mapping = std::vector{8, 9, 4, 0, 2, 1, 3, 5, 7, 6};
