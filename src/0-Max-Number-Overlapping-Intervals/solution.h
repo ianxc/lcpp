@@ -8,10 +8,7 @@ namespace p0_max_num_overlapping_intervals {
 
 class Solution {
   private:
-    enum PointKind {
-        end = false,
-        start = true,
-    };
+    enum PointKind : bool { end, start };
 
     struct PairCmp {
         template <typename T, typename U>
