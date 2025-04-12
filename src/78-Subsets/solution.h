@@ -3,6 +3,8 @@
 #include <functional>
 #include <vector>
 
+namespace p78 {
+
 class Solution {
   public:
     std::vector<std::vector<int>> subsets(std::vector<int>& nums) {
@@ -29,3 +31,5 @@ class Solution {
         return res;
     }
 };
+
+}  // namespace p78

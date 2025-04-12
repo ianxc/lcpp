@@ -18,6 +18,8 @@ scenario t5{{1, 2, 5, 6, 3, 4}, false};
 
 }  // namespace
 
+using namespace p2206;
+
 TEST(Solution, all) {
     Solution s;
 

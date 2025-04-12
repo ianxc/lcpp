@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace p408;
+
 TEST(Solution, test_name) {
     Solution s;
 

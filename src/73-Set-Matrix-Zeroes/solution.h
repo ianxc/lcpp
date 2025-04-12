@@ -4,6 +4,8 @@
 #include <icecream.hpp>
 #include <vector>
 
+namespace p73 {
+
 class TwoPassLinearSumSpaceSolution {
   public:
     void setZeroes(std::vector<std::vector<int>>& matrix) {
@@ -103,3 +105,5 @@ class InPlaceSolution {
         }
     }
 };
+
+}  // namespace p73

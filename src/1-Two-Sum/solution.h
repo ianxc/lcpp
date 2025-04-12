@@ -4,6 +4,8 @@
 #include <utility>
 #include <vector>
 
+namespace p1 {
+
 class Solution {
   public:
     std::pair<int, int> two_sum(const std::vector<int>& nums, int target) {
@@ -35,3 +37,5 @@ class Solution2 {
         return {};
     }
 };
+
+}  // namespace p1

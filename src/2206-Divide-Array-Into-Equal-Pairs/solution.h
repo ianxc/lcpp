@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <vector>
 
+namespace p2206 {
+
 class Solution {
   public:
     bool divideArray(std::vector<int>& nums) {
@@ -24,3 +26,5 @@ class WrongXorSolution {
         return xored_all == 0;
     }
 };
+
+}  // namespace p2206

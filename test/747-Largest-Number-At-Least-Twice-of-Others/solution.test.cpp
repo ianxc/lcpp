@@ -4,6 +4,8 @@
 
 #include <vector>
 
+using namespace p747;
+
 TEST(test_suite_name, test_name) {
     Solution s;
 

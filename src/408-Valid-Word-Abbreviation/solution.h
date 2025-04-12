@@ -4,6 +4,8 @@
 #include <icecream.hpp>
 #include <string>
 
+namespace p408 {
+
 class Solution {
   public:
     bool validWordAbbreviation(std::string word, std::string abbr) {
@@ -45,3 +47,5 @@ class Solution {
         return i == wn && j == an;
     }
 };
+
+}  // namespace p408

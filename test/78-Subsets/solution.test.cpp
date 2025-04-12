@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace p78;
+
 TEST(test_suite_name, test_name) {
     Solution s;
 

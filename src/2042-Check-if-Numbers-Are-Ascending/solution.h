@@ -4,6 +4,8 @@
 #include <icecream.hpp>
 #include <string>
 
+namespace p2042 {
+
 class Solution {
   public:
     bool areNumbersAscending(std::string s) {
@@ -50,3 +52,5 @@ class Solution {
         return !curr_is_digit || last_num < curr_num;
     }
 };
+
+}  // namespace p2042

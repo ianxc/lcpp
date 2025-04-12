@@ -5,6 +5,8 @@
 #include <icecream.hpp>
 #include <vector>
 
+using namespace p1;
+
 TEST(TwoSum, Test1) {
     Solution s;
     auto v = std::vector{1, 2, 3};

@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace p73;
+
 TEST(TwoPassLinearSumSpace, self) {
     TwoPassLinearSumSpaceSolution s;
 

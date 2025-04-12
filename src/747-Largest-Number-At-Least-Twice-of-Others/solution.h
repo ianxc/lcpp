@@ -2,6 +2,8 @@
 
 #include <vector>
 
+namespace p747 {
+
 class Solution {
   public:
     int dominantIndex(std::vector<int>& nums) {
@@ -21,3 +23,5 @@ class Solution {
         return nums[best1] >= 2 * nums[best2] ? best1 : -1;
     }
 };
+
+}  // namespace p747
