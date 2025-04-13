@@ -6,7 +6,7 @@
 #include <string_view>
 #include <vector>
 
-namespace p0_template {
+namespace p475 {
 
 class Solution {
   public:
@@ -54,4 +54,4 @@ class Solution {
     }
 };
 
-}  // namespace p0_template
+}  // namespace p475
