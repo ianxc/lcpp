@@ -68,7 +68,7 @@ function(add_leetcode_problem P_ID)
   set_target_properties(${P_LIB} PROPERTIES LINKER_LANGUAGE CXX)
 
   # add test target
-  set(P_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test/${P_ID}")
+  set(P_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/${P_ID}")
   set(P_TEST_FILE "${P_TEST_DIR}/solution.test.cpp")
   set(P_TEST_NAME "${P_ID}_test")
   if(EXISTS "${P_TEST_FILE}")

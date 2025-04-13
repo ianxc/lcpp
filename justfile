@@ -45,17 +45,17 @@ add p_num p_name: && conf
     P_ID="${P_NUM}-${P_NAME_FMT}"
 
     P_SRC_DIR="src/${P_ID}"
-    P_TEST_DIR="test/${P_ID}"
+    # P_TEST_DIR="test/${P_ID}"
 
     T_SRC_DIR="src/0-Template"
-    T_TEST_DIR="test/0-Template"
+    # T_TEST_DIR="test/0-Template"
 
     mkdir -p "${P_SRC_DIR}"
-    mkdir -p "${P_TEST_DIR}"
+    # mkdir -p "${P_TEST_DIR}"
 
     echo "Added ${P_ID}"
     cp -an "${T_SRC_DIR}"/* "${P_SRC_DIR}"/
-    cp -an "${T_TEST_DIR}"/* "${P_TEST_DIR}"/
+    # cp -an "${T_TEST_DIR}"/* "${P_TEST_DIR}"/
 
 # Run a specific executable with fzf selector if no target is provided
 run target="__def__" *args:
