@@ -4,7 +4,7 @@
 
 #include <tuple>
 
-using namespace p0_template;
+using namespace p475;
 
 TEST(test_suite_name, test_name) {
     using TestCase = std::tuple<std::vector<int>, std::vector<int>, int>;
