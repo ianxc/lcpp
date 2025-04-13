@@ -6,6 +6,12 @@
 
 namespace p75 {
 
+/*
+Useful comments:
+https://leetcode.com/problems/sort-colors/editorial/comments/260760/
+https://leetcode.com/problems/sort-colors/editorial/comments/1144711/?parent=260760
+
+*/
 class Solution {
   public:
     void sortColors(std::vector<int>& nums) {
