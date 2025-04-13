@@ -23,6 +23,17 @@ struct TrieNode {
     TrieNode(char curr, T value) : curr(curr), value(value) {}
 };
 
+/*
+Approaches:
+1. Trie only, 1-pass insert, sum on read [chosen; worse time than others].
+2. Trie only, 1-pass insert, backtrack + apply delta to intermediary nodes on
+   insert.
+3. Trie-only, 2-pass insert, 1 to get delta, 1 to insert + apply delta on
+   insert.
+4. Trie + Map. Map stores scores. Compute delta by looking up in map upon
+   insert. Compute sum in O(K) time where K is the length of the string by
+   walking forward without branching.
+*/
 class MapSum {
   private:
     std::unique_ptr<TrieNode<int>> root;
