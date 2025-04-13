@@ -52,6 +52,7 @@ class Solution {
         for (int i = 0; i < k; i++) {
             std::pop_heap(nums.begin(), heap_end, cmp);
             // ++ has a higher precendence than *.
+            // equivalent to (*(heap_end - 1))++;
             (*std::prev(heap_end))++;
             std::push_heap(nums.begin(), heap_end, cmp);
         }
