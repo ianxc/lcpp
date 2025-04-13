@@ -36,6 +36,9 @@ Optimization: suppose m = min(nums). any n >= m+k will definitely never be the
 minimum, so we can partition `nums` in place to have n >= m+k in the front of
 the vector, and heapify only the end of the vector.
 
+Note: I actually ended up putting the heap at the front instead. This gives me
+greator confidence in not causing iterator invalidation, but it be the same
+either way.
 */
 class Solution {
   public:
