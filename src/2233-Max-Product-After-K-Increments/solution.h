@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <iterator>
 #include <numeric>
 #include <vector>
 
@@ -54,10 +55,12 @@ class Solution {
             std::push_heap(nums.begin(), heap_end, cmp);
         }
 
-        constexpr int MOD = 1e9 + 7;
-        return std::accumulate(
-            nums.begin(), nums.end(), 1,
-            [](auto acc, auto n) -> auto { return (acc * n) % MOD; });
+        constexpr long MOD = 1e9 + 7;
+        auto res = std::accumulate(
+            nums.begin(), nums.end(), 1L,
+            [](long acc, int n) -> long { return (acc * n) % MOD; });
+
+        return static_cast<int>(res);
     }
 };
 
