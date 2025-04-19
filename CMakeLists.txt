@@ -58,8 +58,8 @@ function(add_leetcode_problem P_ID)
     target_include_directories(${P_LIB} INTERFACE
       ${P_SRC_DIR}
     )
-    # exposes transitive dependencies. not ideal, but allows for icecream-cpp usage
-    # within a header file for ease of solution submission.
+    # exposes transitive dependencies. not ideal, but allows for icecream-cpp
+    # usage within a header file for ease of solution submission.
     target_include_directories(${P_LIB} SYSTEM INTERFACE
       ${ICECREAM_CPP_INCLUDE_DIRS}
     )
