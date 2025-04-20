@@ -48,7 +48,7 @@ class Solution {
             i++;
         };
 
-        // need this when the last token is anumber
+        // need this when the last token is a number
         return !curr_is_digit || last_num < curr_num;
     }
 };
