@@ -44,15 +44,11 @@ class MapSum {
     void insert(const std::string& key, int val) {
         auto* curr_node = root.get();
         for (auto ch : key) {
-            auto it = curr_node->children.find(ch);
-            if (it == curr_node->children.end()) {
-                auto [new_it, _] = curr_node->children.emplace(
-                    ch, std::make_unique<TrieNode<int>>(ch));
-
-                curr_node = new_it->second.get();
-            } else {
-                curr_node = it->second.get();
-            }
+            // no need to check if existing node is present, as emplace will
+            // return a iterator to the existing node if it is.
+            auto [it, _is_new] = curr_node->children.emplace(
+                ch, std::make_unique<TrieNode<int>>(ch));
+            curr_node = it->second.get();
         }
         curr_node->value = val;
     }
