@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cassert>
-#include <cctype>
 #include <icecream.hpp>
 #include <string>
 #include <string_view>
