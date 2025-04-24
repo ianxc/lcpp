@@ -23,4 +23,11 @@ class Solution {
     }
 };
 
+class EasySolution {
+  public:
+    bool checkOnesSegment(const std::string& s) {
+        return s.find("01") == std::string::npos;
+    }
+};
+
 }  // namespace p1784
