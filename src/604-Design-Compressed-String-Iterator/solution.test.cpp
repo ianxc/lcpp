@@ -18,13 +18,14 @@ TEST(iterator, basic) {
 }
 
 TEST(iterator, multi_digit_freq) {
-    StringIterator s("a21b2c3");
+    StringIterator s("a21b15c3");
 
     for (int i = 0; i < 21; i++) {
         EXPECT_EQ(s.next(), 'a');
     }
-    EXPECT_EQ(s.next(), 'b');
-    EXPECT_EQ(s.next(), 'b');
+    for (int i = 0; i < 15; i++) {
+        EXPECT_EQ(s.next(), 'b');
+    };
     EXPECT_EQ(s.next(), 'c');
     EXPECT_EQ(s.next(), 'c');
     EXPECT_EQ(s.next(), 'c');
