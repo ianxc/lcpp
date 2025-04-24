@@ -21,7 +21,7 @@ class StringIterator {
         size_t next_char_idx;
     };
 
-    static compute_rem_t compute_rem(const std::string_view source,
+    static compute_rem_t compute_rem(std::string_view source,
                                      size_t start_rem_idx) {
         auto curr_rem = 0;
         auto curr_rem_idx = start_rem_idx;
