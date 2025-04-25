@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <queue>
 #include <vector>
 
@@ -7,8 +8,10 @@ namespace p542 {
 
 class Solution {
   private:
-    const std::vector<std::pair<int, int>> offsets{
-        {1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    using vec2d = std::pair<int, int>;
+
+    static constexpr std::array<vec2d, 4> offsets{
+        {{1, 0}, {0, 1}, {-1, 0}, {0, -1}}};
 
   public:
     std::vector<std::vector<int>> updateMatrix(
@@ -18,7 +21,7 @@ class Solution {
 
         std::vector<std::vector<int>> res(m, std::vector(n, 0));
 
-        std::queue<std::pair<int, int>> q;
+        std::queue<vec2d> q;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (mat[i][j] == 0) {
