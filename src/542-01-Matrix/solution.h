@@ -25,7 +25,7 @@ class Solution {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (mat[i][j] == 0) {
-                    q.push({i, j});
+                    q.emplace(i, j);
                 }
             }
         }
@@ -41,7 +41,8 @@ class Solution {
                     auto ni = i + di, nj = j + dj;
                     if (ni >= 0 && ni < m && nj >= 0 && nj < n &&
                         mat[ni][nj] != 0) {
-                        q.push({ni, nj});
+                        // equivalent to q.push({i, j});
+                        q.emplace(ni, nj);
                         mat[ni][nj] = 0;
                         res[ni][nj] = curr_level;
                     }
