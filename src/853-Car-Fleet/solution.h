@@ -48,16 +48,15 @@ class EasySolution2Passes {
     int carFleet(int target, std::vector<int>& position,
                  std::vector<int>& speed) {
         const auto n = position.size();
-        std::vector<std::pair<int, double>> rem_times;
-        rem_times.reserve(n);
+        std::vector<std::pair<int, double>> rem_times(n);
         for (auto i = 0u; i < n; i++) {
-            rem_times.emplace_back(position[i],
-                                   double(target - position[i]) / speed[i]);
+            rem_times[i] = {position[i],
+                            double(target - position[i]) / speed[i]};
         }
-        std::sort(rem_times.begin(), rem_times.end(),
-                  [](auto p1, auto p2) -> bool { return p1.first > p2.first; });
+        auto cmp = [](auto p1, auto p2) -> bool { return p1.first > p2.first; };
+        std::sort(rem_times.begin(), rem_times.end(), cmp);
 
-        auto [_, fleet_max_time] = rem_times[0];
+        auto fleet_max_time = rem_times[0].second;
         auto fleet_count = 1;
         for (auto i = 1u; i < n; i++) {
             if (rem_times[i].second > fleet_max_time) {
