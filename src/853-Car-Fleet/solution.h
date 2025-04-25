@@ -5,6 +5,23 @@
 
 namespace p853 {
 
+/*
+target = 12
+position = [10, 8, 0, 5, 3]
+rem dist = [ 2, 4,12, 7, 9]
+   speed = [ 2, 4, 1, 1, 3]
+
+- X can only catch up to Y if X's position is less than Y (i.e. Y has less
+  remaining to reach the target)
+
+- we also need to consider the time to dest. The time to dest of X must be less
+  than Y.
+
+- can probably use mono stack.
+- maybe no need to sort the input (but if we don't, will we actually need a heap
+  instead?)
+*/
+
 class EasySolution3Passes {
   public:
     int carFleet(int target, std::vector<int>& position,
