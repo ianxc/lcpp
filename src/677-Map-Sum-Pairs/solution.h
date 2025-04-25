@@ -20,7 +20,7 @@ struct TrieNode {
 
     TrieNode(char curr) : curr(curr), value(std::nullopt) {}
 
-    TrieNode(char curr, T value) : curr(curr), value(value) {}
+    TrieNode(char curr, T value) : curr(curr), value(std::move(value)) {}
 };
 
 /*
