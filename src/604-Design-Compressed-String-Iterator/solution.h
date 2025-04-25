@@ -39,7 +39,7 @@ class StringIterator {
         this->source_string = std::move(compressedString);
         this->curr_char = this->source_string[0];
 
-        auto computed_rem = compute_rem(this->source_string, 1);
+        const auto computed_rem = compute_rem(this->source_string, 1);
         this->curr_rem = computed_rem.curr_rem;
         this->next_char_idx = computed_rem.next_char_idx;
     }
@@ -53,7 +53,7 @@ class StringIterator {
             auto to_return = curr_char;
             this->curr_char = this->source_string[this->next_char_idx];
 
-            auto computed_rem =
+            const auto computed_rem =
                 compute_rem(this->source_string, this->next_char_idx + 1);
             this->curr_rem = computed_rem.curr_rem;
             this->next_char_idx = computed_rem.next_char_idx;
