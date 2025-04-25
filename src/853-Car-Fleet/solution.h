@@ -56,6 +56,8 @@ class EasySolution2Passes {
         auto cmp = [](auto p1, auto p2) -> bool { return p1.first > p2.first; };
         std::sort(rem_times.begin(), rem_times.end(), cmp);
 
+        // alt:
+        // https://leetcode.com/problems/car-fleet/solutions/476982/c-97-o-nlogn-o-n-position-arrival-time-sort/comments/933949/
         auto fleet_max_time = rem_times[0].second;
         auto fleet_count = 1;
         for (auto i = 1u; i < n; i++) {
