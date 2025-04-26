@@ -27,11 +27,11 @@ find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
 find_path(ICECREAM_CPP_INCLUDE_DIRS "icecream.hpp")
 
-function(set_warnings TARGET)
+function(set_warnings TARGET VISIBILITY)
   if(MSVC)
-    target_compile_options(${TARGET} PRIVATE /W4 /WX)
+    target_compile_options(${TARGET} ${VISIBILITY} /W4 /WX)
   else()
-    target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(${TARGET} ${VISIBILITY} -Wall -Wextra -Wpedantic)
   endif()
 endfunction()
 
@@ -51,7 +51,7 @@ function(add_leetcode_problem P_ID)
     target_include_directories(${P_LIB} PRIVATE
       ${ICECREAM_CPP_INCLUDE_DIRS}
     )
-    set_warnings(${P_LIB})
+    set_warnings(${P_LIB} PRIVATE)
   else()
     # header-only library
     add_library(${P_LIB} INTERFACE)
@@ -63,6 +63,7 @@ function(add_leetcode_problem P_ID)
     target_include_directories(${P_LIB} SYSTEM INTERFACE
       ${ICECREAM_CPP_INCLUDE_DIRS}
     )
+    set_warnings(${P_LIB} INTERFACE)
   endif()
 
   set_target_properties(${P_LIB} PROPERTIES LINKER_LANGUAGE CXX)
@@ -82,7 +83,7 @@ function(add_leetcode_problem P_ID)
     target_include_directories(${P_TEST_NAME} PRIVATE
       ${ICECREAM_CPP_INCLUDE_DIRS}
     )
-    set_warnings(${P_TEST_NAME})
+    set_warnings(${P_TEST_NAME} PRIVATE)
 
     gtest_discover_tests(${P_TEST_NAME}
       PROPERTIES LABELS "${P_ID}"
