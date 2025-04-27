@@ -15,6 +15,11 @@ struct TreeNode {
 
     TreeNode(int x, TreeNode *left, TreeNode *right)
         : val(x), left(left), right(right) {}
+
+    ~TreeNode() noexcept {
+        delete this->left;
+        delete this->right;
+    }
 };
 
 /*
@@ -22,8 +27,8 @@ struct TreeNode {
  * pre-order left side, only add node if it's a leaf node OR we have not yet
  * seen the first leaf node.
  *
- * then do pre-order traversal on the right side following the same strategy.
- * combine root value + left-order + reverse(right-order)
+ * then do pre-order traversal on the right side following the same
+ * strategy. combine root value + left-order + reverse(right-order)
  */
 class Solution {
   public:
