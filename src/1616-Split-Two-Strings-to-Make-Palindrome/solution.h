@@ -28,7 +28,8 @@ class Solution {
     bool are_appended_palindromes(std::string_view prefix_str,
                                   std::string_view suffix_str) {
         auto [i, j] = advance_while_palindrome(prefix_str, suffix_str);
-        return is_substr_palindrome(prefix_str, i, j);
+        return is_substr_palindrome(prefix_str, i, j) ||
+               is_substr_palindrome(suffix_str, i, j);
     }
 
   public:
