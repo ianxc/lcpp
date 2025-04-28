@@ -12,7 +12,9 @@ struct TestCase {
     std::vector<int> expected;
 };
 
-std::vector<TestCase> cases;
+std::vector<TestCase> cases{
+    {5, {{1, 3, 2}, {2, 4, 3}, {0, 2, -2}}, {-2, 0, 3, 5, 3}},
+};
 
 }  // namespace
 
