@@ -59,6 +59,7 @@ class NestedInteger {
     }
 };
 
+// Essentially post-order DFS
 class Solution {
   public:
     int depthSum(std::vector<NestedInteger> &nestedList) {
