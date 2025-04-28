@@ -24,7 +24,9 @@
 
 Checks: >
   -*,
-  bugprone-use-after-move,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
   performance-*,
   portability-*,
   readability-qualified-auto,
