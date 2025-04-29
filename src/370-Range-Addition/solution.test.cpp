@@ -22,6 +22,8 @@ TEST(test_suite_name, test_name) {
     Solution s;
 
     for (auto& [length, updates, expected] : cases) {
+        // std::printf("struct: %p, updates: %p\n", (void*)&(cases[0].updates),
+        //             (void*)&updates);
         EXPECT_EQ(s.getModifiedArray(length, updates), expected);
     }
 }
