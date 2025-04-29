@@ -17,6 +17,9 @@ class Solution {
                 case '0':
                     if (seen_lsb_one) return false;
                     break;
+                default:
+                    // this break accts on the switch, not the for-loop.
+                    break;
             }
         }
         return true;

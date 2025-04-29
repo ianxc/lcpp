@@ -2,6 +2,8 @@
 
 set positional-arguments
 
+export CTEST_PARALLEL_LEVEL := env_var_or_default("CTEST_PARALLEL_LEVEL", "10")
+
 default:
     @just build-inc
     @just test-all
