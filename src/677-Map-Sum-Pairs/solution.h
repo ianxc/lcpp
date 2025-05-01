@@ -18,9 +18,15 @@ struct TrieNode {
     // longer terms which include the current prefix.
     std::unordered_map<char, std::unique_ptr<TrieNode<T>>> children;
 
-    TrieNode(char curr) : curr(curr), value(std::nullopt) {}
+    constexpr explicit TrieNode(char curr) noexcept
+        : curr(curr), value(std::nullopt) {}
 
-    TrieNode(char curr, T value) : curr(curr), value(std::move(value)) {}
+    constexpr TrieNode(char curr, T value) noexcept
+        : curr(curr), value(std::move(value)) {}
+
+    // not using std::forward
+    constexpr TrieNode(char curr, T&& value) noexcept
+        : curr(curr), value(std::move(value)) {}
 };
 
 /*
@@ -46,14 +52,14 @@ class MapSum {
         for (auto ch : key) {
             // no need to check if existing node is present, as emplace will
             // return a iterator to the existing node if it is.
-            auto [it, _is_new] = curr_node->children.emplace(
+            auto [it, _is_new] = curr_node->children.try_emplace(
                 ch, std::make_unique<TrieNode<int>>(ch));
             curr_node = it->second.get();
         }
         curr_node->value = val;
     }
 
-    int sum(const std::string& prefix) {
+    int sum(const std::string& prefix) const {
         auto* curr_node = root.get();
         for (auto ch : prefix) {
             auto it = curr_node->children.find(ch);
@@ -67,7 +73,7 @@ class MapSum {
         return sum_rec(curr_node);
     }
 
-    int sum_rec(const TrieNode<int>* node) {
+    static int sum_rec(const TrieNode<int>* node) {
         auto curr_sum = node->value.value_or(0);
         for (const auto& [_, child] : node->children) {
             curr_sum += sum_rec(child.get());
