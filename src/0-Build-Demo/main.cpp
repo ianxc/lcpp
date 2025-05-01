@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include <exception>
 #include <icecream.hpp>
 #include <iostream>
@@ -19,7 +18,8 @@ int main() {
         m[3] = 10;
         std::cout << "m.size() = " << m.size() << '\n';
         IC(m);
-    } catch (std::exception) {
+    } catch (std::exception e) {
+        std::cout << e.what() << '\n';
         std::abort();
     }
 
