@@ -1,12 +1,13 @@
 #!/usr/bin/env just --justfile
 
+set ignore-comments
 set positional-arguments
 
-export CTEST_PARALLEL_LEVEL := env_var_or_default("CTEST_PARALLEL_LEVEL", "10")
+# export CTEST_PARALLEL_LEVEL := env_var_or_default("CTEST_PARALLEL_LEVEL", "10")
 
 default:
     @just build-inc
-    @just test-all
+    # @just test-all
 
 # Build the project
 build *args:
@@ -113,6 +114,7 @@ test target="__def__" *args:
         fi
         rm -f /tmp/test_selection
     elif [ "{{target}}" = "." ]; then
+        export CTEST_PARALLEL_LEVEL=10
         ctest --test-dir build "{{args}}" "$DEFAULT_FLAGS"
     else
         ctest --test-dir build -R {{target}} "{{args}}" "$DEFAULT_FLAGS"
