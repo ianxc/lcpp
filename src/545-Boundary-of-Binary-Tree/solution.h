@@ -34,10 +34,10 @@ struct TreeNode {
 class Solution {
   public:
     std::vector<int> boundaryOfBinaryTree(TreeNode *root) {
-        auto get_left_child = [](const TreeNode *root) -> const TreeNode * {
-            return root->left;
-        };
-        auto get_right_child = [](const TreeNode *root) -> const TreeNode * {
+        const auto get_left_child =
+            [](const TreeNode *root) -> const TreeNode * { return root->left; };
+        const auto get_right_child =
+            [](const TreeNode *root) -> const TreeNode * {
             return root->right;
         };
 
