@@ -33,10 +33,16 @@ struct TreeNode {
 class Solution {
   public:
     std::vector<int> boundaryOfBinaryTree(TreeNode *root) {
+        auto get_left_child = [](const TreeNode *root) { return root->left; };
+        auto get_right_child = [](const TreeNode *root) { return root->right; };
+
         std::vector<int> left_bound{root->val};
-        left_boundary(left_bound, root->left);
+        traverse_boundary(left_bound, get_left_child(root), get_left_child,
+                          get_right_child);
+
         std::vector<int> right_bound;
-        right_boundary(right_bound, root->right);
+        traverse_boundary(right_bound, get_right_child(root), get_right_child,
+                          get_left_child);
 
         // combine left with reverse of right.
         left_bound.insert(left_bound.end(), right_bound.crbegin(),
@@ -45,59 +51,41 @@ class Solution {
     }
 
   private:
-    void right_boundary(std::vector<int> &right_bound, const TreeNode *right) {
-        std::vector<const TreeNode *> right_stack;
-        auto seen_right_leaf = false;
-        if (right != nullptr) {
-            right_stack.push_back(right);
+    // yep, separate template type parameters are required.
+    template <typename BoundChildGetter, typename InternalChildGetter>
+    void traverse_boundary(std::vector<int> &boundary,
+                           const TreeNode *bound_root,
+                           BoundChildGetter &&get_bound_child,
+                           InternalChildGetter &&get_internal_child) {
+        std::vector<const TreeNode *> stack;
+        bool seen_leaf = false;
+
+        if (bound_root != nullptr) {
+            stack.push_back(bound_root);
         }
 
-        while (!right_stack.empty()) {
-            const auto *curr = right_stack.back();
-            right_stack.pop_back();
+        while (!stack.empty()) {
+            const auto *curr = stack.back();
+            stack.pop_back();
 
-            if (curr->left == nullptr && curr->right == nullptr) {
-                right_bound.push_back(curr->val);
-                seen_right_leaf = true;
-                continue;
-            } else if (!seen_right_leaf) {
-                right_bound.push_back(curr->val);
-            }
+            const TreeNode *bc = get_bound_child(curr);
+            const TreeNode *ic = get_internal_child(curr);
 
-            if (curr->left != nullptr) {
-                right_stack.push_back(curr->left);
-            }
-            if (curr->right != nullptr) {
-                right_stack.push_back(curr->right);
-            }
-        }
-    }
-
-    void left_boundary(std::vector<int> &left_bound, const TreeNode *left) {
-        std::vector<const TreeNode *> left_stack;
-        auto seen_left_leaf = false;
-        if (left != nullptr) {
-            left_stack.push_back(left);
-        }
-
-        while (!left_stack.empty()) {
-            const auto *curr = left_stack.back();
-            left_stack.pop_back();
-
-            if (curr->left == nullptr && curr->right == nullptr) {
-                left_bound.push_back(curr->val);
-                seen_left_leaf = true;
+            if (ic == nullptr && bc == nullptr) {
+                boundary.push_back(curr->val);
+                seen_leaf = true;
                 // not needed, but put just to skip further checks.
                 continue;
-            } else if (!seen_left_leaf) {
-                left_bound.push_back(curr->val);
+            } else if (!seen_leaf) {
+                boundary.push_back(curr->val);
             }
 
-            if (curr->right != nullptr) {
-                left_stack.push_back(curr->right);
+            if (ic != nullptr) {
+                stack.push_back(ic);
             }
-            if (curr->left != nullptr) {
-                left_stack.push_back(curr->left);
+
+            if (bc != nullptr) {
+                stack.push_back(bc);
             }
         }
     }
