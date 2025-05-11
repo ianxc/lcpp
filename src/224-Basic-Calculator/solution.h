@@ -70,7 +70,8 @@ class Solution {
 
                     // reset everything
                     curr_val = 0;
-                    curr_mul = 1;
+                    // not necessary to set `curr_mul = 1` as it will be set by
+                    // the next +/-.
 
                     IC(ch, expr_val, curr_val, curr_mul, st);
                     break;
