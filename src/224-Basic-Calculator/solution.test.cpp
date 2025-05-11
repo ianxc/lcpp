@@ -22,6 +22,7 @@ INSTANTIATE_TEST_SUITE_P(CalculatorCases, CalculatorTest,
 
 TEST_P(CalculatorTest, CalculateExpression) {
     Solution s;
+    IC_CONFIG.output(std::cout);
 
     const auto& [input, expected] = CalculatorTest::GetParam();
 

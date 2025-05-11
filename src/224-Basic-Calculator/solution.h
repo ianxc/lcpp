@@ -3,7 +3,6 @@
 #include <cassert>
 #include <cctype>
 #include <icecream.hpp>
-#include <iostream>
 #include <stack>
 #include <string_view>
 #include <type_traits>
@@ -19,8 +18,6 @@ constexpr bool is_even(T x) {
 class Solution {
   public:
     int calculate(std::string_view s) {
-        IC_CONFIG.output(std::cout);
-
         std::stack<int> st;
         int expr_val = 0, curr_val = 0, curr_mul = 1;
         for (auto ch : s) {
