@@ -34,8 +34,12 @@ struct TreeNode {
 class Solution {
   public:
     std::vector<int> boundaryOfBinaryTree(TreeNode *root) {
-        auto get_left_child = [](const TreeNode *root) { return root->left; };
-        auto get_right_child = [](const TreeNode *root) { return root->right; };
+        auto get_left_child = [](const TreeNode *root) -> const TreeNode * {
+            return root->left;
+        };
+        auto get_right_child = [](const TreeNode *root) -> const TreeNode * {
+            return root->right;
+        };
 
         std::vector<int> left_bound{root->val};
         traverse_boundary(left_bound, get_left_child(root), get_left_child,
