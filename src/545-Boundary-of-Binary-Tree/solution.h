@@ -34,9 +34,9 @@ struct TreeNode {
 class Solution {
   public:
     std::vector<int> boundaryOfBinaryTree(TreeNode *root) {
-        const auto get_left_child =
+        static constexpr auto get_left_child =
             [](const TreeNode *root) -> const TreeNode * { return root->left; };
-        const auto get_right_child =
+        static constexpr auto get_right_child =
             [](const TreeNode *root) -> const TreeNode * {
             return root->right;
         };
