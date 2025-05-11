@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stack>
 #include <vector>
 
 namespace p545 {
@@ -57,16 +58,16 @@ class Solution {
                            const TreeNode *bound_root,
                            BoundChildGetter &&get_bound_child,
                            InternalChildGetter &&get_internal_child) {
-        std::vector<const TreeNode *> stack;
+        std::stack<const TreeNode *> stack;
         bool seen_leaf = false;
 
         if (bound_root != nullptr) {
-            stack.push_back(bound_root);
+            stack.push(bound_root);
         }
 
         while (!stack.empty()) {
-            const auto *curr = stack.back();
-            stack.pop_back();
+            const auto *curr = stack.top();
+            stack.pop();
 
             const TreeNode *bc = get_bound_child(curr);
             const TreeNode *ic = get_internal_child(curr);
@@ -81,11 +82,11 @@ class Solution {
             }
 
             if (ic != nullptr) {
-                stack.push_back(ic);
+                stack.push(ic);
             }
 
             if (bc != nullptr) {
-                stack.push_back(bc);
+                stack.push(bc);
             }
         }
     }
