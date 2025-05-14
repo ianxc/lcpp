@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stack>
+#include <type_traits>
 #include <vector>
 
 namespace p545 {
@@ -62,6 +63,14 @@ class Solution {
                            const TreeNode *bound_root,
                            BoundChildGetter &&get_bound_child,
                            InternalChildGetter &&get_internal_child) {
+        static_assert(std::is_invocable_r_v<const TreeNode *, BoundChildGetter,
+                                            const TreeNode *>,
+                      "BoundChildGetter must conform to signature");
+        static_assert(
+            std::is_invocable_r_v<const TreeNode *, InternalChildGetter,
+                                  const TreeNode *>,
+            "InternalChildGetter must conform to signature");
+
         std::stack<const TreeNode *> stack;
         bool seen_leaf = false;
 
