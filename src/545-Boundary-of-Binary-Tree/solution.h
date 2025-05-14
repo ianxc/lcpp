@@ -24,6 +24,15 @@ struct TreeNode {
     }
 };
 
+template <typename F>
+struct is_treenode_selector {
+    static constexpr bool value =
+        std::is_invocable_r_v<const TreeNode *, F, const TreeNode *>;
+};
+
+template <typename F>
+inline constexpr bool is_treenode_selector_v = is_treenode_selector<F>::value;
+
 /*
  * Idea:
  * pre-order left side, only add node if it's a leaf node OR we have not yet
@@ -63,13 +72,8 @@ class Solution {
                            const TreeNode *bound_root,
                            BoundChildGetter &&get_bound_child,
                            InternalChildGetter &&get_internal_child) {
-        static_assert(std::is_invocable_r_v<const TreeNode *, BoundChildGetter,
-                                            const TreeNode *>,
-                      "BoundChildGetter must conform to signature");
-        static_assert(
-            std::is_invocable_r_v<const TreeNode *, InternalChildGetter,
-                                  const TreeNode *>,
-            "InternalChildGetter must conform to signature");
+        static_assert(is_treenode_selector_v<BoundChildGetter>);
+        static_assert(is_treenode_selector_v<InternalChildGetter>);
 
         std::stack<const TreeNode *> stack;
         bool seen_leaf = false;
